@@ -4,9 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign In and Sign Up Form</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="https://kit.fontawesome.com/d49ce246b4.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    hello, world!
+    <header>
+        this is the header
+        this is more text
+    </header>
+    <div class="container">
+        <div class="form-box">
+            <h1 id="title">Sign Up</h1>
+            <form>
+                <div class="input-group">
+                    <div class="input-field" id="emailField">
+                        <i class="fa-solid fa-envelope" style="color: #CCD5AE;"></i>
+                        <input type="text" placeholder="Enter Email">
+                    </div>
+                    <div class="input-field" id="usernameField">
+                        <i class="fa-solid fa-user" style="color: #CCD5AE;"></i>
+                        <input type="text" placeholder="Enter Username">
+                    </div>
+                    <div class="input-field" id="passwordField">
+                        <i class="fa-solid fa-lock" style="color: #CCD5AE;"></i>
+                        <input type="text" placeholder="Enter Password">
+                    </div>
+                    <p id="forgotPassword">Forgot Password? <a href="#">click here</a></p>
+                </div>
+                <div class="btn-field">
+                    <button type="button" id="signupBtn">Sign Up</button>
+                    <button type="button" id="signinBtn" class="disable">Sign In</button>
+                </div>
+                <div>
+                    <input type="submit" id="submitBtn" value="Submit">
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    <footer>
+        this is the footer
+    </footer>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/scripts/main.js"></script>
 </body>
 </html>
