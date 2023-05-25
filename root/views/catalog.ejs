@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/catalog.css">
+</head>
+<body>
+    <header>
+        <div class="logoContainer">
+            <img src="/public/images/logo.png" alt="Cedar Country Library System Logo; Tree sprouting out of a book" id="logo">
+        </div>
+        <div class="welcomeUser">
+            <h1>
+                <% if (user) { %>
+                    <h1> My Shelf: <%= user.username %></h1>
+                <% } %>
+            </h1>
+        </div>
+        <div class="avatar">
+            <a href="/" id="signout">Sign out</a>
+        </div>
+    </header>
+    <nav class="navContainer">
+        <div class="navBar" >
+            <ul class="navLinks">
+                <li><a href="/user/home">Home</a></li>
+                <li><a href="/user/catalog">Catalog</a></li>
+                <li><a href="/user/returns">Returns</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="content">
+            <div class="form-box" id="catSearch">
+                <h1 id="title">Catalog Search</h1>
+                <form method="GET" action="/user/services/">
+                    <div class="input-groupOne">
+                        <div class="input-field">
+                                <input type="text" placeholder="Search by Book Name" name="bookName" id="bookSearch" >     
+                        </div>
+                    </div>
+                    <div>
+                        <input type="submit" id="catalogSubmitBtn" value="Submit">
+                    </div>
+                </form>
+            </div>           
+        </div>
+        <div class="catalog">
+            <div class="catalogBox">
+
+              
+            </div>
+        </div>
+    </div>
+    <footer>
+        <h4>DevMountain - Bright Paths 8: July '23 | Foundations Captstone Project by J. Stewart</h4>
+    </footer>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/public/scripts/catalog.js"></script>
+</body>
+</html>

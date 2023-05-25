@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returns</title>
+    <link rel="stylesheet" href="/public/css/returns.css">
+</head>
+<body>
+    <header>
+        <div class="logoContainer">
+            <img src="/public/images/logo.png" alt="Cedar Country Library System Logo; Tree sprouting out of a book" id="logo">
+        </div>
+        <div class="welcomeUser">
+            <h1>
+                <% if (typeof user !== 'undefined' || typeof loans !== 'undefined') { %>
+                    <h1> User: <%= typeof user !== 'undefined' ? user.username : loans.username %></h1>
+                <% } %>
+                
+            </h1>
+        </div>
+        <div class="avatar">
+            <a href="/" id="signout">Sign out</a>
+        </div>
+    </header>
+    <nav class="navContainer">
+        <div class="navBar" >
+            <ul class="navLinks">
+                <li><a href="/user/home">Home</a></li>
+                <li><a href="/user/catalog">Catalog</a></li>
+                <li><a href="/user/returns">Returns</a></li>
+            </ul>
+            
+        </div>
+    </nav>
+    <div class="container">
+        <% if(loans) { %>
+            <% loans.forEach(loan=>{ %>
+                <div class="card">
+                    <img id="cover" src="<%= loan.image %>" />       
+                    <div class="bookInfo">
+                      <div class="bookTitle"><%= loan.book_title %></div>
+                      <div class="dueDate">Due Date: <%= moment(loan.due_date).format('dddd, MMMM DD, YYYY h:mm A') %></div>
+                      <div class="returnBtn">Return Book</div>
+                    </div>
+                  </div>
+            <% }) %> 
+            <% } %>
+        
+
+
+
+        
+    </div>
+    <footer>
+        <h4>DevMountain - Bright Paths 8: July '23 | Foundations Captstone Project by J. Stewart</h4>
+    </footer>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/public/scripts/returns.js"></script>
+</body>
+</html>

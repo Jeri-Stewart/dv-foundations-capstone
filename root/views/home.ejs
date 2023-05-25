@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/public/css/home.css">
+</head>
+<body>
+    <header>
+        <div class="logoContainer">
+            <img src="/public/images/logo.png" alt="Cedar Country Library System Logo; Tree sprouting out of a book" id="logo">
+        </div>
+        <div class="welcomeUser">
+            <h1>
+                <% if (user) { %>
+                    <h1>Welcome, <%= user.username %></h1>
+                <% } %>
+            </h1>
+        </div>
+        <div class="avatar">
+            <a href="/" id="signout">Sign out</a>
+        </div>
+    </header>
+    <nav class="navContainer">
+        <div class="navBar" >
+            <ul class="navLinks">
+                <li><a href="/user/home">Home</a></li>
+                <li><a href="/user/catalog">Catalog</a></li>
+                <li><a href="/user/returns">Returns</a></li>
+            </ul>
+            
+        </div>
+    </nav>
+    <div class="container">
+        <div class="containerA">
+            <img src="/public/images/home_mainImg.jpeg" id="mainImg">
+        </div>
+        <div class="containerB">
+            <div class="boxB">
+                <p>
+                    Reading is the root of knowledge, and just like the symbolic tree of knowledge it branches out to endless possibilities. Reading nourishes our minds and through books, we explore new worlds to expand our imagination, curiosity, and growth.
+                </p>
+            </div>
+        </div>
+        <div class="containerC">
+            <div class="divider"></div>
+            <div class="boxC">
+                <h2>What's on the shelves:</h2>
+                <div class="shelfList">
+                    <img src="https://images.isbndb.com/covers/35/65/9780743273565.jpg" alt="Book Cover 9780743273565">
+                    <img src="https://images.isbndb.com/covers/48/86/9780571364886.jpg" alt="Book Cover 9780571364886">
+                    <img src="https://images.isbndb.com/covers/95/18/9780141439518.jpg" alt="Book Cover 9780141439518">
+                    <img src="https://images.isbndb.com/covers/26/87/9781503222687.jpg" alt="Book Cover 9781503222687">
+                    <img src="https://images.isbndb.com/covers/29/22/9780393062922.jpg" alt="Book Cover 9780393062922">
+                    <img src="https://images.isbndb.com/covers/35/28/9780439023528.jpg" alt="Book Cover 9780439023528">
+                    <img src="https://images.isbndb.com/covers/68/00/9780812416800.jpg" alt="Book Cover 9780812416800">
+                    <img src="https://images.isbndb.com/covers/90/27/9780375969027.jpg" alt="Book Cover 9780375969027">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/public/scripts/home.js"></script>
+</body>
+</html>
