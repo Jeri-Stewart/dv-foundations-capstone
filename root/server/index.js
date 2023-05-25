@@ -37,6 +37,7 @@ const {
   sign,
   updateLoans,
   updateBookAvailability,
+  deleteLoan,
 } = require("./controller.js");
 
 //middleware to help execute endpoint
@@ -77,5 +78,7 @@ app.post("/user/catalog/", updateLoans);
 
 // update books table
 app.put("/user/catalog/", updateBookAvailability);
+
+app.delete("/user/returns/", deleteLoan);
 
 app.listen(PORT, () => console.log("Server running on port 8000"));

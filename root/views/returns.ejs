@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Returns</title>
+    <title>User Books and Returns</title>
     <link rel="stylesheet" href="/public/css/returns.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
         <div class="welcomeUser">
             <h1>
                 <% if (typeof user !== 'undefined' || typeof loans !== 'undefined') { %>
-                    <h1> User: <%= typeof user !== 'undefined' ? user.username : loans.username %></h1>
+                    <h1> User Shelf: <%= typeof user !== 'undefined' ? user.username : loans.username %></h1>
                 <% } %>
                 
             </h1>
@@ -35,23 +35,22 @@
         </div>
     </nav>
     <div class="container">
-        <% if(loans) { %>
-            <% loans.forEach(loan=>{ %>
-                <div class="card">
-                    <img id="cover" src="<%= loan.image %>" />       
-                    <div class="bookInfo">
-                      <div class="bookTitle"><%= loan.book_title %></div>
-                      <div class="dueDate">Due Date: <%= moment(loan.due_date).format('dddd, MMMM DD, YYYY h:mm A') %></div>
-                      <div class="returnBtn">Return Book</div>
-                    </div>
-                  </div>
-            <% }) %> 
-            <% } %>
-        
-
-
-
-        
+        <div class="shelf">
+            <% if(loans) { %>
+                <% loans.forEach(loan=>{ %>
+                    <div class="card">
+                        <img id="cover" src="<%= loan.image %>" />       
+                        <div class="bookInfo">
+                          <div class="bookTitle"><%= loan.book_title %></div>
+                          <div class="dueDate">Due Date: <%= moment(loan.due_date).format('dddd, MMMM DD, YYYY h:mm A') %></div>
+                          <div class="returnBtn">
+                            <button type="button" class="return-book" value="<%= loan.loan_id %>">Return Book: <%= loan.loan_id %></button>
+                          </div>
+                        </div>
+                      </div>
+                <% }) %> 
+                <% } %>
+        </div>
     </div>
     <footer>
         <h4>DevMountain - Bright Paths 8: July '23 | Foundations Captstone Project by J. Stewart</h4>

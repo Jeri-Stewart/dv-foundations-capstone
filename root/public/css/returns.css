@@ -84,28 +84,43 @@ header{
 }
 
 .container{
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));
-    grid-gap: 50px;
     width:100%;
     height: 100vh;
-    background-image: url('/public/images/returns_shelf\ \(1\).jpeg');
+    background-image: url('/public/images/returns_shelf_updated.png');
     background-position: center;
     background-size: cover;
     position: relative;
 }
 
+.shelf{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));
+    column-gap: 50px;
+    row-gap: 80px;
+    position: relative;
+    top: 40px;
+    left: 0px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.card{
+    margin: 0 auto;
+}
 #cover{
     /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     height:200px;
     width: auto;
+    position: relative;
+    left: 40px;
+
   }
   
 /* On mouse-over, add a deeper shadow */
 #cover:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.594);
   }
   
 /* Add some padding inside the card container */
@@ -114,9 +129,13 @@ padding: 2px 16px;
 }
 
 .bookInfo {
-    background:white;
+    background:#CCD5AE;
+    border:#386641;
+    color:#386641;
     width: 200px;
+    font-weight: bold;
     text-align: center;
+    font-size: 12px
 }
 
 button{

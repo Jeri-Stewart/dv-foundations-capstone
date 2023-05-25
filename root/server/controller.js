@@ -2,8 +2,7 @@ require("dotenv").config();
 const { CONNECTION_STRING } = process.env;
 const Sequelize = require("sequelize");
 const bcrypt = require("bcrypt");
-const moment = require('moment');
-
+const moment = require("moment");
 
 // you wouldn't want to rejectUnauthorized in a production app, but it's great for practice
 const sequelize = new Sequelize(CONNECTION_STRING, {
@@ -93,7 +92,7 @@ module.exports = {
     console.log(email);
     let loans = await sequelize.query(
       `
-      SELECT users.email, users.username, books.title AS book_title, books.image, authors.name AS author_name, loans.due_date
+      SELECT users.email, users.username, books.title AS book_title, books.image, authors.name AS author_name, loans.loan_id, loans.due_date
       FROM loans
       JOIN users ON loans.user_id = users.user_id
       JOIN books ON loans.book_id = books.book_id
@@ -114,7 +113,6 @@ module.exports = {
       console.log("empty arr");
       // case where no books are found
       res.render("returns", { user: user, loans: loans, moment: moment });
-
     }
   },
   sign: async (req, res) => {
@@ -234,6 +232,60 @@ module.exports = {
     } catch (error) {
       console.error(error);
       res.status(500).send("An error occurred while updating books");
+    }
+  },
+  deleteLoan: async (req, res) => {
+    const { loan_id } = req.body;
+    const user = req.session.user;
+
+    try {
+      const deletedLoan = await Loan.findOne({
+        where: {
+          loan_id: loan_id,
+        },
+      });
+
+      if (deletedLoan) {
+        const bookId = deletedLoan.book_id;
+
+        // Delete the loan
+        await deletedLoan.destroy();
+
+        // Retrieve the updated loans from the database
+        const loans = await sequelize.query(
+          `
+          SELECT users.email, users.username, books.title AS book_title, books.image, authors.name AS author_name, loans.loan_id, loans.due_date
+          FROM loans
+          JOIN users ON loans.user_id = users.user_id
+          JOIN books ON loans.book_id = books.book_id
+          JOIN authors ON books.author_id = authors.author_id
+          WHERE users.email = $1
+        `,
+          {
+            type: sequelize.QueryTypes.SELECT,
+            bind: [user.email],
+          }
+        );
+
+        // Update the book's availability
+        await Book.update(
+          { is_available: true },
+          { where: { book_id: bookId } }
+        );
+
+        res
+          .status(200)
+          .render("returns", { user: user, loans: loans, moment: moment });
+      } else {
+        res
+          .status(200)
+          .render("returns", { user: user, loans: [], moment: moment });
+      }
+    } catch (error) {
+      console.log("Database error:", error);
+      res
+        .status(500)
+        .json({ error: "An error occurred while deleting the loan." });
     }
   },
 };
